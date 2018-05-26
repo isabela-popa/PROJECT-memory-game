@@ -55,7 +55,7 @@ h1 {
     height: 125px;
     width: 125px;
     background: #2e3d49;
-    font-size: 0;
+    /* font-size: 0; */
     color: #ffffff;
     border-radius: 8px;
     cursor: pointer;
@@ -65,15 +65,23 @@ h1 {
     box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
 }
 
+.deck .card > i {
+    opacity: 0;
+}
+
+.deck .card.show > i {
+    opacity: 1;
+}
+
 .deck .card.open {
     transform: rotateY(0);
     background: #02b3e4;
     cursor: default;
 }
 
-.deck .card.show {
+/* .deck .card.show {
     font-size: 33px;
-}
+} */
 
 .deck .card.match {
     cursor: default;
@@ -109,11 +117,9 @@ h1 {
 }
 
 /* Card symbols */
-.sym {
-    display: none;
-    /* width: 0;
-    height: 0; */
-}
+/* .sym {
+    display: inline-block;
+} */
 
 .sym-C3PO {
     content: url(../img/C3PO.svg);
