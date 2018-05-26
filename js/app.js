@@ -2,6 +2,9 @@
  * Create a list that holds all of your cards
  */
 
+ let cardSymbols = ["sym sym-C3PO", "sym sym-C3PO", "sym sym-Chewbacca", "sym sym-Chewbacca", "sym sym-Darth-Vader", "sym sym-Darth-Vader", "sym sym-Death-Star", "sym sym-Death-Star", "sym sym-Leia", "sym sym-Leia", "sym sym-Millennium-Falcon", "sym sym-Millennium-Falcon", "sym sym-R2D2", "sym sym-R2D2", "sym sym-Stormtrooper", "sym sym-Stormtrooper"];
+
+ let cardBoard = document.querySelector('.deck');
 
 /*
  * Display the cards on the page
@@ -25,6 +28,18 @@ function shuffle(array) {
     return array;
 }
 
+// Initialize game
+function drawCards() {
+    // Loop through each card item
+    for (i = 0; i < cardSymbols.length; i++) {
+        // Create card's HTML and add CSS class
+        let cardItem = document.createElement('li');
+        cardItem.classList.add('card');
+        cardItem.innerHTML = `<i class="${cardSymbols[i]}"></i>`;
+        // Add each card's HTML to the page
+        cardBoard.appendChild(cardItem);
+    }
+}
 
 /*
  * set up the event listener for a card. If a card is clicked:
@@ -36,3 +51,5 @@ function shuffle(array) {
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
+
+drawCards();

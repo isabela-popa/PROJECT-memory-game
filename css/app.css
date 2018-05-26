@@ -107,3 +107,42 @@ h1 {
     float: right;
     cursor: pointer;
 }
+
+/* Card symbols */
+.sym {
+    display: none;
+    /* width: 0;
+    height: 0; */
+}
+
+.sym-C3PO {
+    content: url(../img/C3PO.svg);
+}
+
+.sym-Chewbacca {
+    content: url(../img/Chewbacca.svg);
+}
+
+.sym-Darth-Vader {
+    content: url(../img/Darth-Vader.svg);
+}
+
+.sym-Death-Star {
+    content: url(../img/Death-Star.svg);
+}
+
+.sym-Leia {
+    content: url(../img/Leia.svg);
+}
+
+.sym-Millennium-Falcon {
+    content: url(../img/Millennium-Falcon.svg);
+}
+
+.sym-R2D2 {
+    content: url(../img/R2D2.svg);
+}
+
+.sym-Stormtrooper {
+    content: url(../img/Stormtrooper.svg);
+}
