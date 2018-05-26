@@ -4,14 +4,19 @@
 
  let cardSymbols = ["sym sym-C3PO", "sym sym-C3PO", "sym sym-Chewbacca", "sym sym-Chewbacca", "sym sym-Darth-Vader", "sym sym-Darth-Vader", "sym sym-Death-Star", "sym sym-Death-Star", "sym sym-Leia", "sym sym-Leia", "sym sym-Millennium-Falcon", "sym sym-Millennium-Falcon", "sym sym-R2D2", "sym sym-R2D2", "sym sym-Stormtrooper", "sym sym-Stormtrooper"];
 
- let cardBoard = document.querySelector('.deck');
-
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
  *   - loop through each card and create its HTML
  *   - add each card's HTML to the page
  */
+
+//  Store shuffled cards array in a new array
+let shuffledSymbols = shuffle(cardSymbols);
+console.log(shuffledSymbols);
+// Store the first .deck element in a variable, where each card's HTML will be added
+let cardBoard = document.querySelector('.deck');
+
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -31,11 +36,11 @@ function shuffle(array) {
 // Initialize game
 function drawCards() {
     // Loop through each card item
-    for (i = 0; i < cardSymbols.length; i++) {
+    for (i = 0; i < shuffledSymbols.length; i++) {
         // Create card's HTML and add CSS class
         let cardItem = document.createElement('li');
         cardItem.classList.add('card');
-        cardItem.innerHTML = `<i class="${cardSymbols[i]}"></i>`;
+        cardItem.innerHTML = `<i class="${shuffledSymbols[i]}"></i>`;
         // Add each card's HTML to the page
         cardBoard.appendChild(cardItem);
     }
