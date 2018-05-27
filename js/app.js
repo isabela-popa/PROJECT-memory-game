@@ -21,6 +21,8 @@ let cardBoard = document.querySelector('.deck');
 // Store the opened cards in an empty array
 let openedCards = [];
 
+
+
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
@@ -65,16 +67,27 @@ function drawCards() {
 // Add event listener for card
 function clickCard(cardItem) {
     cardItem.addEventListener('click', function() {
-        // Open card and display it's symbol
-        cardItem.classList.add("open", "show"); 
+        // Display card's symbol
+        displaySymbol(cardItem);
         // Add opened card to a temporary array 
         addTempArray(cardItem);
     });
 }
 
+// Open card and display it's symbol
+function displaySymbol(cardItem) {
+    cardItem.classList.add("open", "show");
+}
+
 // Store opened card in an empty array
 function addTempArray(cardItem) {
     openedCards.push(cardItem);
+}
+
+function compareCards() {
+    if(openedCards === 1) {
+
+    }
 }
 
 // Start game
