@@ -79,11 +79,16 @@ function clickCard(cardItem) {
             // If the cards do match
                 // Lock the cards in open position
                 lockCards(openedCards);
+                // Remove cards from opened cards array
                 openedCards = [];
                 // console.log("Cards match!");
             } else {
             // If the cards don't match
-                console.log("Cards don't match!");
+                // Close opened cards and hide their symbol
+                hideCards(openedCards);
+                // Remove cards from opened cards array
+                openedCards = [];
+                // console.log("Cards don't match!");
             }
         } else {
         // If opened cards array is empty  
@@ -105,9 +110,19 @@ function addTempArray(cardItem) {
     openedCards.push(cardItem);
 }
 
+// Lock the cards in open position
 function lockCards(openedCards) {
     openedCards[1].classList.add("match");
     openedCards[0].classList.add("match"); 
+}
+
+// Close opened cards and hide their symbol
+function hideCards(openedCards) {
+    // Delay the execution of this code
+    setTimeout(function() {
+        openedCards[1].classList.remove("open", "show");
+        openedCards[0].classList.remove("open", "show");
+    }, 400);
 }
 
 // Start game
