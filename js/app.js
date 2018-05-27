@@ -89,7 +89,10 @@ function clickCard(cardItem) {
 
                 // Remove cards from opened cards array
                 openedCards = [];
-                
+
+                // Check if all cards have matched
+                gameOver();
+                                
                 // console.log("Cards match!");
 
             } else {
@@ -144,5 +147,17 @@ function hideCards(openedCards) {
     }, 400);
 }
 
+// Check if all cards have matched
+function gameOver() {
+    // Check the length of the matched cards array
+    if(matchedCards.length === cardSymbols.length) {
+    //If all 8 card pairs have matched, end the game
+        // Show game over message
+        setTimeout(function() {
+            alert("GAME OVER!");
+        }, 100);
+    }
+}
+
 // Start game
- drawCards();
+drawCards();
