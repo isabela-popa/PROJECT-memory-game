@@ -76,8 +76,13 @@ function clickCard(cardItem) {
             addTempArray(cardItem);
             // Check cards for match
             if(openedCards[1].innerHTML === openedCards[0].innerHTML) {
-                console.log("Cards mached!");
+            // If the cards do match
+                // Lock the cards in open position
+                lockCards(openedCards);
+                openedCards = [];
+                // console.log("Cards match!");
             } else {
+            // If the cards don't match
                 console.log("Cards don't match!");
             }
         } else {
@@ -98,6 +103,11 @@ function displaySymbol(cardItem) {
 // Store opened card in a temporarry empty array
 function addTempArray(cardItem) {
     openedCards.push(cardItem);
+}
+
+function lockCards(openedCards) {
+    openedCards[1].classList.add("match");
+    openedCards[0].classList.add("match"); 
 }
 
 // Start game
