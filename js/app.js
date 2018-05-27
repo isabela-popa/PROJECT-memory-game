@@ -13,10 +13,13 @@
 
 //  Store shuffled cards array in a new array
 let shuffledSymbols = shuffle(cardSymbols);
-console.log(shuffledSymbols);
+// console.log(shuffledSymbols);
+
 // Store the first .deck element in a variable, where each card's HTML will be added
 let cardBoard = document.querySelector('.deck');
 
+// Store the opened cards in an empty array
+let openedCards = [];
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -43,6 +46,8 @@ function drawCards() {
         cardItem.innerHTML = `<i class="${shuffledSymbols[i]}"></i>`;
         // Add each card's HTML to the page
         cardBoard.appendChild(cardItem);
+        // Add click event for each card
+        clickCard(cardItem);
     }
 }
 
@@ -57,4 +62,13 @@ function drawCards() {
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
 
-drawCards();
+// Add event listener for card
+function clickCard(cardItem) {
+    cardItem.addEventListener('click', function() {
+        // Open card and display it's symbol
+        cardItem.classList.add("open", "show"); 
+    });
+}
+
+// Start game
+ drawCards();
