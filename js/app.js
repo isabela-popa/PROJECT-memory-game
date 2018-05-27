@@ -15,7 +15,7 @@
 let shuffledSymbols = shuffle(cardSymbols);
 // console.log(shuffledSymbols);
 
-// Store the first .deck element in a variable, where each card's HTML will be added
+// Store the first .deck element in a variable, where will be added each card's HTML
 let cardBoard = document.querySelector('.deck');
 
 // Store the opened cards in an empty array
@@ -64,13 +64,23 @@ function drawCards() {
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
 
-// Add event listener for card
+// Add click event listener for card
 function clickCard(cardItem) {
     cardItem.addEventListener('click', function() {
-        // Display card's symbol
-        displaySymbol(cardItem);
-        // Add opened card to a temporary array 
-        addTempArray(cardItem);
+        // Check if the opened cards array already has another card
+        if(openedCards.length === 1) {
+        // If opened cards array has another card
+            // Display card's symbol
+            displaySymbol(cardItem);
+            // Add opened card to a temporary array 
+            addTempArray(cardItem);
+        } else {
+        // If opened cards array is empty  
+            // Display card's symbol
+            displaySymbol(cardItem);
+            // Add opened card to a temporary array 
+            addTempArray(cardItem);
+        }
     });
 }
 
@@ -79,15 +89,9 @@ function displaySymbol(cardItem) {
     cardItem.classList.add("open", "show");
 }
 
-// Store opened card in an empty array
+// Store opened card in a temporarry empty array
 function addTempArray(cardItem) {
     openedCards.push(cardItem);
-}
-
-function compareCards() {
-    if(openedCards === 1) {
-
-    }
 }
 
 // Start game
