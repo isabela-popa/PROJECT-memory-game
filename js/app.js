@@ -21,6 +21,8 @@ let cardBoard = document.querySelector(".deck");
 // Store the opened cards in an empty array
 let openedCards = [];
 
+// Store the matched cards in a temporary array
+let matchedCards = [];
 
 
 // Shuffle function from http://stackoverflow.com/a/2450976
@@ -72,30 +74,42 @@ function clickCard(cardItem) {
         // If opened cards array has another card
             // Display card's symbol
             displaySymbol(cardItem);
+
             // Add opened card to a temporary array 
-            addTempArray(cardItem);
+            addOpenArray(cardItem);
+
             // Check cards for match
             if(openedCards[1].innerHTML === openedCards[0].innerHTML) {
             // If the cards do match
                 // Lock the cards in open position
                 lockCards(openedCards);
+
+                // Push cards to matched cards array
+                addMatchArray(openedCards);
+
                 // Remove cards from opened cards array
                 openedCards = [];
+                
                 // console.log("Cards match!");
+
             } else {
             // If the cards don't match
                 // Close opened cards and hide their symbol
                 hideCards(openedCards);
+                
                 // Remove cards from opened cards array
                 openedCards = [];
+
                 // console.log("Cards don't match!");
             }
+
         } else {
         // If opened cards array is empty  
             // Display card's symbol
             displaySymbol(cardItem);
+
             // Add opened card to a temporary array 
-            addTempArray(cardItem);
+            addOpenArray(cardItem);
         }
     });
 }
@@ -105,8 +119,8 @@ function displaySymbol(cardItem) {
     cardItem.classList.add("open", "show");
 }
 
-// Store opened card in a temporarry empty array
-function addTempArray(cardItem) {
+// Store opened card in a temporary empty array
+function addOpenArray(cardItem) {
     openedCards.push(cardItem);
 }
 
@@ -114,6 +128,11 @@ function addTempArray(cardItem) {
 function lockCards(openedCards) {
     openedCards[1].classList.add("match");
     openedCards[0].classList.add("match"); 
+}
+
+// Store matched cards in a temporary array
+function addMatchArray(openedCards) {
+    matchedCards.push(openedCards[0], openedCards[1]);
 }
 
 // Close opened cards and hide their symbol
