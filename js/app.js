@@ -16,7 +16,7 @@ let shuffledSymbols = shuffle(cardSymbols);
 // console.log(shuffledSymbols);
 
 // Store the first .deck element in a variable, where will be added each card's HTML
-let cardBoard = document.querySelector('.deck');
+let cardBoard = document.querySelector(".deck");
 
 // Store the opened cards in an empty array
 let openedCards = [];
@@ -43,8 +43,8 @@ function drawCards() {
     // Loop through each card item
     for (i = 0; i < shuffledSymbols.length; i++) {
         // Create card's HTML and add CSS class
-        let cardItem = document.createElement('li');
-        cardItem.classList.add('card');
+        let cardItem = document.createElement("li");
+        cardItem.classList.add("card");
         cardItem.innerHTML = `<i class="${shuffledSymbols[i]}"></i>`;
         // Add each card's HTML to the page
         cardBoard.appendChild(cardItem);
@@ -66,7 +66,7 @@ function drawCards() {
 
 // Add click event listener for card
 function clickCard(cardItem) {
-    cardItem.addEventListener('click', function() {
+    cardItem.addEventListener("click", function() {
         // Check if the opened cards array already has another card
         if(openedCards.length === 1) {
         // If opened cards array has another card
@@ -74,6 +74,12 @@ function clickCard(cardItem) {
             displaySymbol(cardItem);
             // Add opened card to a temporary array 
             addTempArray(cardItem);
+            // Check cards for match
+            if(openedCards[1].innerHTML === openedCards[0].innerHTML) {
+                console.log("Cards mached!");
+            } else {
+                console.log("Cards don't match!");
+            }
         } else {
         // If opened cards array is empty  
             // Display card's symbol
