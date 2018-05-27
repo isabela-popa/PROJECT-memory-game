@@ -67,7 +67,14 @@ function clickCard(cardItem) {
     cardItem.addEventListener('click', function() {
         // Open card and display it's symbol
         cardItem.classList.add("open", "show"); 
+        // Add opened card to a temporary array 
+        addTempArray(cardItem);
     });
+}
+
+// Store opened card in an empty array
+function addTempArray(cardItem) {
+    openedCards.push(cardItem);
 }
 
 // Start game
