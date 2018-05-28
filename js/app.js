@@ -24,6 +24,12 @@ let openedCards = [];
 // Store the matched cards in a temporary array
 let matchedCards = [];
 
+// Store the element which holds the moves in a variable
+let movePanel = document.querySelector(".moves");
+// Display de moves on the page
+movePanel.innerHTML = 0;
+// Store the move counter in a variable
+let moveCounter = 0;
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -106,6 +112,9 @@ function clickCard(cardItem) {
                 // console.log("Cards don't match!");
             }
 
+            // Increment the move counter
+            countMoves();
+
         } else {
         // If opened cards array is empty  
             // Display card's symbol
@@ -147,6 +156,12 @@ function hideCards(openedCards) {
     }, 400);
 }
 
+// Increment the move counter
+function countMoves() {
+    moveCounter += 1;
+    movePanel.innerHTML = moveCounter;
+}
+
 // Check if all cards have matched
 function gameOver() {
     // Check the length of the matched cards array
@@ -169,6 +184,8 @@ resetButton.addEventListener("click", function() {
     cardBoard.innerHTML = "";
     matchedCards = [];
     drawCards();
+    movePanel.innerHTML = 0;
+    moveCounter = 0;
 })
 
 // Start game
