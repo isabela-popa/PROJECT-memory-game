@@ -128,7 +128,7 @@ function clickCard(cardItem) {
 
 // Open card and display it's symbol
 function displaySymbol(cardItem) {
-    cardItem.classList.add("open", "show");
+    cardItem.classList.add("open", "show", "noclick");
 }
 
 // Store opened card in a temporary empty array
@@ -151,8 +151,8 @@ function addMatchArray(openedCards) {
 function hideCards(openedCards) {
     // Delay the execution of this code
     setTimeout(function() {
-        openedCards[1].classList.remove("open", "show");
-        openedCards[0].classList.remove("open", "show");
+        openedCards[1].classList.remove("open", "show", "noclick");
+        openedCards[0].classList.remove("open", "show", "noclick");
     }, 400);
 }
 
@@ -165,7 +165,7 @@ function countMoves() {
 // Check if all cards have matched
 function gameOver() {
     // Check the length of the matched cards array
-    if(matchedCards.length === cardSymbols.length) {
+    if(matchedCards.length === 16) {
     //If all 8 card pairs have matched, end the game
         // Show game over message
         setTimeout(function() {
