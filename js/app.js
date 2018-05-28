@@ -159,5 +159,17 @@ function gameOver() {
     }
 }
 
+// Restart game
+// Store the element which holds the reset button in a variable
+let resetButton = document.querySelector(".restart");
+// Add click event listener to reset button
+resetButton.addEventListener("click", function() {
+    // Reset all variables
+    shuffledSymbols = shuffle(cardSymbols);
+    cardBoard.innerHTML = "";
+    matchedCards = [];
+    drawCards();
+})
+
 // Start game
 drawCards();
