@@ -31,6 +31,12 @@ movePanel.innerHTML = 0;
 // Store the move counter in a variable
 let moveCounter = 0;
 
+// Store the element which holds the star rating in a variable
+let starsPanel = document.querySelector(".stars");
+// Add the HTML of the stars to the page, which at the beginning of a game displays 3 stars
+let starItem = `<li><i class="fa fa-star"></i></li>`;
+starsPanel.innerHTML = starItem + starItem + starItem;
+
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
@@ -112,7 +118,7 @@ function clickCard(cardItem) {
                 // console.log("Cards don't match!");
             }
 
-            // Increment the move counter
+            // Increment the move counter and display it on the page
             countMoves();
 
         } else {
@@ -156,10 +162,29 @@ function hideCards(openedCards) {
     }, 400);
 }
 
-// Increment the move counter
+// Increment the move counter and display it on the page
 function countMoves() {
     moveCounter += 1;
     movePanel.innerHTML = moveCounter;
+    // Display star rating based on player's moves
+    changeRating();
+}
+
+// Display star rating based on player's moves
+function changeRating() {
+    switch(moveCounter) {
+        // If number of moves >= 16, it changes to a 2 star rating
+        case 16:
+            starsPanel.innerHTML = starItem + starItem;
+        break;
+        // If number of moves >= 24, it changes to a 1 star rating
+        case 24:
+            starsPanel.innerHTML = starItem;
+        break;
+        // If number of moves >= 31, it changes to a 0 star rating
+        case 31:
+            starsPanel.innerHTML = "";
+    }
 }
 
 // Check if all cards have matched
@@ -186,6 +211,7 @@ resetButton.addEventListener("click", function() {
     drawCards();
     movePanel.innerHTML = 0;
     moveCounter = 0;
+    starsPanel.innerHTML = starItem + starItem + starItem;
 })
 
 // Start game
