@@ -48,6 +48,11 @@ let timerId;
 // The timer will start when the first card is clicked
 let firstClick = true;
 
+// Store the element which holds the popup in a variable
+let popUp = document.querySelector(".popup");
+// Declare a variable for Stars Wars power type based on rating
+let powerType;
+
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
@@ -214,8 +219,8 @@ function gameOver() {
         endTimer();
         // Show game over message
         setTimeout(function() {
-            alert("GAME OVER!");
-        }, 100);
+            showPopup();
+        }, 100); 
     }
 }
 
@@ -251,7 +256,43 @@ function endTimer() {
     clearInterval(timerId);
 }
 
-// Restart game
+// Show congratulations popup
+function showPopup() {
+    switch(starsPanel.innerHTML) {
+        // If number of stars = 3, the player has Death Star power
+        case starItem + starItem + starItem:
+            powerType = "Death Star";
+        break;
+        // If number of stars = 2, the player has Darth Vader power
+        case starItem + starItem:
+            powerType = "Darth Vader";
+        break;
+        // If number of stars = 1, the player has Stormtrooper power
+        case starItem:
+            powerType = "Storm Trooper";
+        break;
+        // If number of stars = 0, the player has no Sith power
+        case ``:
+            powerType = "No Sith";
+        break;
+    }
+
+    // Make popup visible
+    popUp.classList.add("visible");
+    // Add HTML content of the modal to the page
+    popUp.innerHTML = `<div class="modal"><h3>Congratulations! You won!</h3>
+    <p>With ${moveCounter} Moves and ${starsPanel.innerHTML} Stars.<br>You have ${powerType} power!</p>
+    <button class="button" onclick='playAgain();'>Play again!</button></div>`;
+}
+
+// Restart game with play again button from the modal
+function playAgain() {
+    popUp.classList.remove("visible");
+    resetVar();
+    drawCards();
+}
+
+// Restart game with reset button
 // Store the element which holds the reset button in a variable
 let resetButton = document.querySelector(".restart");
 // Add click event listener to reset button
