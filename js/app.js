@@ -26,7 +26,7 @@ let matchedCards = [];
 
 // Store the element which holds the moves in a variable
 let movePanel = document.querySelector(".moves");
-// Display de moves on the page
+// Display de default moves on the page
 movePanel.innerHTML = 0;
 // Store the move counter in a variable
 let moveCounter = 0;
@@ -36,6 +36,17 @@ let starsPanel = document.querySelector(".stars");
 // Add the HTML of the stars to the page, which at the beginning of a game displays 3 stars
 let starItem = `<li><i class="fa fa-star"></i></li>`;
 starsPanel.innerHTML = starItem + starItem + starItem;
+
+// Store the element which holds the timer in a variable
+let timePanel = document.querySelector(".timer");
+// Display de default value of the timer on the page
+timePanel.innerHTML = `00m:00s`;
+// Store the time counter in a variable
+let timeCounter = 0;
+// Declare a timer identifier that can be used to cancel the execution
+let timerId;
+// The timer will start when the first card is clicked
+let firstClick = true;
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -81,6 +92,13 @@ function drawCards() {
 // Add click event listener for card
 function clickCard(cardItem) {
     cardItem.addEventListener("click", function() {
+        // When the first card is clicked, start the timer
+        if(firstClick) {
+            beginTimer();
+            // For the next clicks the condition will be false and the execution of the code will be skipped
+            firstClick = false;
+        }
+        
         // Check if the opened cards array already has another card
         if(openedCards.length === 1) {
         // If opened cards array has another card
@@ -167,11 +185,11 @@ function countMoves() {
     moveCounter += 1;
     movePanel.innerHTML = moveCounter;
     // Display star rating based on player's moves
-    changeRating();
+    showRating();
 }
 
 // Display star rating based on player's moves
-function changeRating() {
+function showRating() {
     switch(moveCounter) {
         // If number of moves >= 16, it changes to a 2 star rating
         case 16:
@@ -192,11 +210,45 @@ function gameOver() {
     // Check the length of the matched cards array
     if(matchedCards.length === 16) {
     //If all 8 card pairs have matched, end the game
+        // Stop counting time
+        endTimer();
         // Show game over message
         setTimeout(function() {
             alert("GAME OVER!");
         }, 100);
     }
+}
+
+// Start the timer
+function beginTimer() {
+    timerId = setInterval(countTime, 1000);
+}
+
+// Increment the time counter
+function countTime() {
+    // Increase the time counter by 1
+    timeCounter += 1;
+    // Divide the timer into mm:ss format
+    let min = Math.trunc(timeCounter/60);
+    let sec = (timeCounter-(min*60));
+    // If the minutes and seconds have 1 digit, add a 0 in front of it
+    if (min < 10) {
+        min = `0${min}m`;
+    } else {
+        min = `${min}m`;
+    };
+    if (sec < 10) {
+        sec = `0${sec}s`;
+    } else {
+        sec = `${sec}s`;
+    };
+    // Update the timer HTML on the page
+    timePanel.innerHTML = `${min}:${sec}`;
+}
+
+// Stop the timer when the game is over or the player resets the game
+function endTimer() {
+    clearInterval(timerId);
 }
 
 // Restart game
@@ -205,14 +257,30 @@ let resetButton = document.querySelector(".restart");
 // Add click event listener to reset button
 resetButton.addEventListener("click", function() {
     // Reset all variables
-    shuffledSymbols = shuffle(cardSymbols);
-    cardBoard.innerHTML = "";
-    matchedCards = [];
+    resetVar();
+    // Initialize the game
     drawCards();
+})
+
+// Reset all variables
+function resetVar() {
+    // Reset shuffled cards array
+    shuffledSymbols = shuffle(cardSymbols);
+    // Delete cards HTML from the page
+    cardBoard.innerHTML = "";
+    // Delete cards from matched cards array
+    matchedCards = [];
+    // Reset moves
     movePanel.innerHTML = 0;
     moveCounter = 0;
+    // Reset rating
     starsPanel.innerHTML = starItem + starItem + starItem;
-})
+    // Reset timer
+    endTimer();
+    timePanel.innerHTML = `00m:00s`;
+    timeCounter = 0;
+    firstClick = true;
+}
 
 // Start game
 drawCards();
