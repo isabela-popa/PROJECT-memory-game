@@ -17,7 +17,10 @@ body {
 }
 
 body {
-    background: #ffffff url('../img/geometry2.png'); /* Background pattern from Subtle Patterns */
+    /* Image source: https://wallpaperset.com */
+    background: #c0c0c0 url('../img/star-wars-wallpaper-landscape.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
     font-family: 'Coda', cursive;
 }
 
@@ -31,6 +34,7 @@ body {
 h1 {
     font-family: 'Open Sans', sans-serif;
     font-weight: 300;
+    color: #fff;
 }
 
 /*
@@ -38,9 +42,9 @@ h1 {
  */
 
 .deck {
-    width: 660px;
-    min-height: 680px;
-    background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
+    max-width: 660px;
+    max-height: 680px;
+    background: linear-gradient(160deg, #fff44f 0%, #c0c0c0 100%);
     padding: 32px;
     border-radius: 10px;
     box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
@@ -54,7 +58,7 @@ h1 {
 .deck .card {
     height: 125px;
     width: 125px;
-    background: #2e3d49;
+    background: #000;
     /* font-size: 0; */
     color: #ffffff;
     border-radius: 8px;
@@ -63,6 +67,7 @@ h1 {
     justify-content: center;
     align-items: center;
     box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
+    margin: 10px 0;
 }
 
 .deck .card > i {
@@ -75,7 +80,7 @@ h1 {
 
 .deck .card.open {
     transform: rotateY(0);
-    background: #02b3e4;
+    background: #c0c0c0;
     cursor: default;
 }
 
@@ -85,7 +90,7 @@ h1 {
 
 .deck .card.match {
     cursor: default;
-    background: #02ccba;
+    background: #fff44f;
     /* font-size: 33px; */
 }
 
@@ -101,6 +106,7 @@ h1 {
     text-align: left;
     width: 345px;
     margin-bottom: 10px;
+    color: #fff;
 }
 
 .score-panel .stars {
@@ -125,9 +131,8 @@ h1 {
 }
 
 /* Card symbols */
-/* .sym {
-    display: inline-block;
-} */
+
+/* Icons from  http://www.iconarchive.com/show/starwars-icons-by-sensibleworld.html*/
 
 .sym-C3PO {
     content: url(../img/C3PO.svg);
@@ -162,6 +167,7 @@ h1 {
 }
 
 /* Congratulations popup */
+
 .popup {
     position: fixed;
     top: 0;
@@ -173,21 +179,97 @@ h1 {
     justify-content: center;
     background: rgba(0,0,0,0.5);
     visibility: hidden;
-  }
+}
 
-  .popup.visible {
+.popup.visible {
     visibility: visible;
-  }
-  
-  .modal {
+}
+
+.modal {
     background: rgba(255,255,255,0.9);
     padding: 30px;
     border-radius: 10px;
     text-align: center;
-    list-style-type: none;
-  }
-  
-  .button {
+    list-style-type: none; 
+}
+
+.modal li {
+    display: inline-flex;
+}
+
+.button {
     font-size: 1em;
     border-radius: 5px;
-  }
+}
+
+/* Responsive */
+
+@media screen and (min-width: 781px) and (max-width: 1440px) {
+    h1 {
+        -webkit-margin-before: 0.30em;
+        -webkit-margin-after: 0.30em;
+    }
+
+    .deck {
+        margin: 0 0 1em;
+    }    
+}
+
+@media screen and (max-width: 1200px) {
+    body {
+        background-position: center;
+    }
+}
+
+@media screen and (max-width: 780px) {
+    body {
+        /* Image source: https://www.setaswall.com */
+        background-image: url('../img/Star-Wars-Wallpaper-portrait.jpg');
+    }
+}
+
+@media screen and (min-width: 540px) and (max-width: 600px) {
+    .deck .card {
+        height: 110px;
+        width: 110px;
+    }  
+}
+
+@media screen and (min-width: 466px) and (max-width: 540px) {
+    .deck .card {
+        height: 95px;
+        width: 95px;
+    }  
+}
+
+@media screen and (min-width: 401px) and (max-width: 465px) {
+    .deck .card {
+        height: 80px;
+        width: 80px;
+    }
+}
+
+@media screen and (min-width: 351px) and (max-width: 400px) {
+    .deck .card {
+        height: 70px;
+        width: 70px;
+    }
+}
+
+@media screen and (max-width: 350px) {
+    .deck .card {
+        height: 60px;
+        width: 60px;
+    }
+
+    .sym {
+        height: 35px;  
+    }
+}
+
+@media screen and (max-width: 380px) {
+    .score-panel {
+        max-width: 345px;
+        padding:  0 15px 0 15px;
+    }
+}
