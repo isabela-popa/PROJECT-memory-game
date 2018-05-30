@@ -3,3 +3,6 @@
 .stylelintrc
 .eslintrc.json
 
+.gitattributes
+.gitignore
+.CONTRIBUTING
