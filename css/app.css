@@ -53,6 +53,8 @@ h1 {
     justify-content: space-between;
     align-items: center;
     margin: 0 0 3em;
+    /* Give perspective to the 3d positioned cards */
+    perspective: 800px;
 }
 
 .deck .card {
@@ -68,6 +70,12 @@ h1 {
     align-items: center;
     box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
     margin: 10px 0;
+    /* Transition for animations */
+    transition: all 400ms ease;
+    /* The flipped card will preserve the 3d transformation */
+    transform-style: preserve-3d;
+    /* Possible style for unmatched cards animation */
+    /* position: relative; */
 }
 
 .deck .card > i {
@@ -79,7 +87,8 @@ h1 {
 }
 
 .deck .card.open {
-    transform: rotateY(0);
+    /* Flipping animation */
+    transform: rotateY(180deg);
     background: #c0c0c0;
     cursor: default;
 }
@@ -88,10 +97,73 @@ h1 {
     font-size: 33px;
 } */
 
+/* Keyframe animation for matched cards */
+@keyframes match {
+    from {
+        transform: scale(1, 1);
+        background: #c0c0c0;
+    }
+
+    to {
+        transform: scale(1.2, 0.8);
+        background: #fff44f;
+    }
+}
+
 .deck .card.match {
     cursor: default;
     background: #fff44f;
     /* font-size: 33px; */
+    animation-duration: 400ms;
+    animation-name: match;
+}
+
+/* Keyframe animation for unmatched cards */
+@keyframes unmatch {
+    from {
+        transform: translate(0, 0);
+        background: #c0c0c0;
+    }
+
+    20%, 60% {
+        transform: translate(-8px, 0);
+        background: #f00;
+    }
+
+    40%, 80% {
+        transform: translate(8px, 0);
+        background: #f00;
+    }
+
+    to {
+        background: #f00;
+    }
+}
+
+/* @keyframes unmatch {
+    from {
+        transform: scale(1, 1);
+        background: #c0c0c0;
+    }
+
+    60% {
+        transform: scale(1.2, 1.2);
+        background: #f00;
+    }
+
+    to {
+        background: #f00;
+    }
+} */
+
+.deck .card.nomatch {
+    animation-duration: 600ms;
+    animation-name: unmatch;
+}
+
+.deck .card.nomatch > i {
+    animation-duration: 600ms;
+    animation-name: unmatch;
 }
 
 .deck .card.noclick {
@@ -122,7 +194,7 @@ h1 {
 }
 
 .score-panel .timer {
-    margin: 0 0 0 5px;
+    margin: 0 0 0 50px;
 }
 
 .score-panel .restart {
@@ -133,6 +205,18 @@ h1 {
 /* Card symbols */
 
 /* Icons from  http://www.iconarchive.com/show/starwars-icons-by-sensibleworld.html*/
+
+.sym {
+    backface-visibility: hidden;
+    transform: rotateY(180deg);
+    /* Possible styles for unmatched cards animation */
+    /* position: absolute;
+    top: 0;
+    left: 0;
+    padding: 41.5px;
+    height: 125px;
+    width: 125px; */
+}
 
 .sym-C3PO {
     content: url(../img/C3PO.svg);

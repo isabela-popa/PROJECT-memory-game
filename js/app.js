@@ -132,6 +132,9 @@ function clickCard(cardItem) {
 
             } else {
             // If the cards don't match
+                // Add animation to unmatched cards
+                addUnmatchAnimation (openedCards);
+
                 // Close opened cards and hide their symbol
                 hideCards(openedCards);
                 
@@ -155,7 +158,7 @@ function clickCard(cardItem) {
     });
 }
 
-// Open card and display it's symbol
+// Open card and display it's symbol and remove event listener
 function displaySymbol(cardItem) {
     cardItem.classList.add("open", "show", "noclick");
 }
@@ -176,13 +179,24 @@ function addMatchArray(openedCards) {
     matchedCards.push(openedCards[0], openedCards[1]);
 }
 
+// Add animation to unmatched cards
+function addUnmatchAnimation (openedCards) {
+    // Delay the execution of this code, to give time the second card to flip over 
+    setTimeout(function() {
+        // Play unmatched cards animation
+        openedCards[1].classList.add("nomatch");
+        openedCards[0].classList.add("nomatch");
+    }, 400);
+}
+
 // Close opened cards and hide their symbol
 function hideCards(openedCards) {
-    // Delay the execution of this code
+    // Delay the execution of this code, to give time to play unmatched cards animation
     setTimeout(function() {
-        openedCards[1].classList.remove("open", "show", "noclick");
-        openedCards[0].classList.remove("open", "show", "noclick");
-    }, 400);
+        // Close cards, hide their symbol, add back event listener and remove animation for unmatched cards
+        openedCards[1].classList.remove("open", "show", "noclick", "nomatch");
+        openedCards[0].classList.remove("open", "show", "noclick", "nomatch");
+    }, 1000);
 }
 
 // Increment the move counter and display it on the page
@@ -281,7 +295,7 @@ function showPopup() {
     popUp.classList.add("visible");
     // Add HTML content of the modal to the page
     popUp.innerHTML = `<div class="modal"><h3>Congratulations! You won!</h3>
-    <p>With ${moveCounter} Moves and ${starsPanel.innerHTML} Stars.<br>You have ${powerType} power!</p>
+    <p>With ${moveCounter} Moves and ${starsPanel.innerHTML} Stars.<br>You have <em>${powerType}</em> power!</p>
     <button class="button" onclick='playAgain();'>Play again!</button></div>`;
 }
 
