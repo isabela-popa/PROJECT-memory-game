@@ -1,8 +1,7 @@
 /*
  * Create a list that holds all of your cards
  */
-
- let cardSymbols = [
+let cardSymbols = [
     "sym sym-C3PO",
     "sym sym-Chewbacca",
     "sym sym-Darth-Vader",
@@ -14,14 +13,7 @@
 ];
 cardSymbols = [...cardSymbols, ...cardSymbols];
 
-/*
- * Display the cards on the page
- *   - shuffle the list of cards using the provided "shuffle" method below
- *   - loop through each card and create its HTML
- *   - add each card's HTML to the page
- */
-
-//  Store shuffled cards array in a new array
+//  Shuffle the list of cards and store it in a new array
 let shuffledSymbols = shuffle(cardSymbols);
 // console.log(shuffledSymbols);
 
@@ -78,7 +70,7 @@ function shuffle(array) {
     return array;
 }
 
-// Initialize game
+// Initialize game and display the cards on the page
 function drawCards() {
     // Loop through each card item
     for (i = 0; i < shuffledSymbols.length; i++) {
@@ -93,18 +85,7 @@ function drawCards() {
     }
 }
 
-/*
- * set up the event listener for a card. If a card is clicked:
- *  - display the card's symbol (put this functionality in another function that you call from this one)
- *  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
- *  - if the list already has another card, check to see if the two cards match
- *    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
- *    + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
- *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
- *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
- */
-
-// Add click event listener for card
+// Set up the click event listener for a card
 function clickCard(cardItem) {
     cardItem.addEventListener("click", function() {
         // When the first card is clicked, start the timer
@@ -117,16 +98,16 @@ function clickCard(cardItem) {
         // Check if the opened cards array already has another card
         if(openedCards.length === 1) {
         // If opened cards array has another card
-            // Display card's symbol
+            // Display the card's symbol
             displaySymbol(cardItem);
 
             // Add opened card to a temporary array 
             addOpenArray(cardItem);
 
-            // Check cards for match
+            // Check the two opened cards for match
             if(openedCards[1].innerHTML === openedCards[0].innerHTML) {
             // If the cards do match
-                // Lock the cards in open position
+                // Lock the cards in the open position
                 lockCards(openedCards);
 
                 // Push cards to matched cards array
@@ -135,7 +116,7 @@ function clickCard(cardItem) {
                 // Remove cards from opened cards array
                 openedCards = [];
 
-                // Check if all cards have matched
+                // Check if all cards have matched; if it's true, display a message with the final score
                 gameOver();
                                 
                 // console.log("Cards match!");
@@ -234,7 +215,7 @@ function showRating() {
     }
 }
 
-// Check if all cards have matched
+// Check if all cards have matched; if it's true, display a message with the final score
 function gameOver() {
     // Check the length of the matched cards array
     if(matchedCards.length === 16) {
