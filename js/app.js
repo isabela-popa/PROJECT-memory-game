@@ -161,8 +161,11 @@ function addOpenArray(cardItem) {
 
 // Lock the cards in open position
 function lockCards(openedCards) {
-    openedCards[1].classList.add("match");
-    openedCards[0].classList.add("match"); 
+    // Delay the play of matched cards animation, to give time the second card to flip over 
+    setTimeout(function() {
+        openedCards[1].classList.add("match");
+        openedCards[0].classList.add("match");
+    }, 400);
 }
 
 // Store matched cards in a temporary array
