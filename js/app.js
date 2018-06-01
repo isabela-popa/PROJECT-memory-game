@@ -2,7 +2,17 @@
  * Create a list that holds all of your cards
  */
 
- let cardSymbols = ["sym sym-C3PO", "sym sym-C3PO", "sym sym-Chewbacca", "sym sym-Chewbacca", "sym sym-Darth-Vader", "sym sym-Darth-Vader", "sym sym-Death-Star", "sym sym-Death-Star", "sym sym-Leia", "sym sym-Leia", "sym sym-Millennium-Falcon", "sym sym-Millennium-Falcon", "sym sym-R2D2", "sym sym-R2D2", "sym sym-Stormtrooper", "sym sym-Stormtrooper"];
+ let cardSymbols = [
+    "sym sym-C3PO",
+    "sym sym-Chewbacca",
+    "sym sym-Darth-Vader",
+    "sym sym-Death-Star",
+    "sym sym-Leia",
+    "sym sym-Millennium-Falcon",
+    "sym sym-R2D2",
+    "sym sym-Stormtrooper"
+];
+cardSymbols = [...cardSymbols, ...cardSymbols];
 
 /*
  * Display the cards on the page
