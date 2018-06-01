@@ -208,10 +208,6 @@ function showRating() {
         // If number of moves >= 24, it changes to a 1 star rating
         case 24:
             starsPanel.innerHTML = starItem;
-        break;
-        // If number of moves >= 31, it changes to a 0 star rating
-        case 31:
-            starsPanel.innerHTML = "";
     }
 }
 
@@ -275,11 +271,6 @@ function showPopup() {
         // If number of stars = 1, the player has Stormtrooper power
         case starItem:
             powerType = "Storm Trooper";
-        break;
-        // If number of stars = 0, the player has no Sith power
-        case ``:
-            powerType = "No Sith";
-        break;
     }
 
     // Make popup visible
