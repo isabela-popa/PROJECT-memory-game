@@ -238,16 +238,8 @@ function countTime() {
     let min = Math.trunc(timeCounter/60);
     let sec = (timeCounter-(min*60));
     // If the minutes and seconds have 1 digit, add a 0 in front of it
-    if (min < 10) {
-        min = `0${min}m`;
-    } else {
-        min = `${min}m`;
-    };
-    if (sec < 10) {
-        sec = `0${sec}s`;
-    } else {
-        sec = `${sec}s`;
-    };
+    min < 10 ? min = `0${min}m` : min = `${min}m`;
+    sec < 10 ? sec = `0${sec}s` : sec = `${sec}s`;
     // Update the timer HTML on the page
     timePanel.innerHTML = `${min}:${sec}`;
 }
