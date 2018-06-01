@@ -323,6 +323,8 @@ function resetVar() {
     shuffledSymbols = shuffle(cardSymbols);
     // Delete cards HTML from the page
     cardBoard.innerHTML = "";
+    // Delete cards from opened cards array
+    openedCards = [];
     // Delete cards from matched cards array
     matchedCards = [];
     // Reset moves
