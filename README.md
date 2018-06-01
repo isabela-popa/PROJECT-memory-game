@@ -2,8 +2,12 @@
 
 ## Introduction
 
-The Memory Game project is a card matching game built to be 
-usable across modern desktop, tablet, and phone browsers.
+The Memory Game project is a card matching game built using only HTML, CSS and JavaScript. 
+In addition, there have been added a couple of dependencies:
+* Some icons used in the game are coming from Font Awesome;
+* The page is styled with Coda Font Family from Google Fonts. 
+
+It is usable across modern desktop, tablet, and phone browsers. 
 
 It consists of 8 pairs of cards, each pair with a different symbol on one side. They are arranged randomly on the board, with the symbol face down. You can flip over two cards in one move, to find the symbols that match.
 
@@ -17,7 +21,9 @@ It consists of 8 pairs of cards, each pair with a different symbol on one side. 
 * To finish the gamme, continue clicking on the other cards and revealing their symbol, until you match all of them.
 
 Game starts when you click on the first card and a timer measures the time elapsed until all eight pairs of cards have been found.
+
 Try to match the cards in less moves to get a better rating. One move equals two cards flipped over.
+
 You can restart the game at any time by clicking the reset button situated on the upper right side of the game board.
 
 ## Feedback
