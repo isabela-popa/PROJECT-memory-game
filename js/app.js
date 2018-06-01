@@ -269,7 +269,7 @@ function showPopup() {
     popUp.classList.add("visible");
     // Add HTML content of the modal to the page
     popUp.innerHTML = `<div class="modal"><h3>Congratulations! You won!</h3>
-    <p>With ${moveCounter} Moves and ${starsPanel.innerHTML} Stars.<br>You have <em>${powerType}</em> power!</p>
+    <p>With ${moveCounter} Moves in ${timePanel.innerHTML} and ${starsPanel.innerHTML} Stars.<br>You have <em>${powerType}</em> power!</p>
     <button class="button" onclick='playAgain();'>Play again!</button></div>`;
 }
 
