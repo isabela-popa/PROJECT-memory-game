@@ -74,7 +74,7 @@ h1 {
     transition: all 400ms ease;
     /* The flipped card will preserve the 3d transformation */
     transform-style: preserve-3d;
-    /* Possible style for unmatched cards animation */
+    /* TODO: improve unmatched cards animation */
     /* position: relative; */
 }
 
@@ -146,7 +146,7 @@ h1 {
         background: #c0c0c0;
     }
 
-    60% {
+    50% {
         transform: scale(1.2, 1.2);
         background: #f00;
     }
@@ -161,10 +161,11 @@ h1 {
     animation-name: unmatch;
 }
 
-.deck .card.nomatch > i {
+/* TODO: improve unmatched cards animation */
+/* .deck .card.nomatch > i {
     animation-duration: 600ms;
     animation-name: unmatch;
-}
+} */
 
 .deck .card.noclick {
     pointer-events: none;
@@ -209,7 +210,7 @@ h1 {
 .sym {
     backface-visibility: hidden;
     transform: rotateY(180deg);
-    /* Possible styles for unmatched cards animation */
+    /* TODO: improve unmatched cards animation */
     /* position: absolute;
     top: 0;
     left: 0;

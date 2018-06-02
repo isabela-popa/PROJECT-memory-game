@@ -88,22 +88,24 @@ function drawCards() {
 // Set up the click event listener for a card
 function clickCard(cardItem) {
     cardItem.addEventListener("click", function() {
+        // console.log('openedCards: ', openedCards);
         // When the first card is clicked, start the timer
         if(firstClick) {
             beginTimer();
             // For the next clicks the condition will be false and the execution of the code will be skipped
             firstClick = false;
         }
-        
+
         // Check if the opened cards array already has another card
         if(openedCards.length === 1) {
         // If opened cards array has another card
             // Display the card's symbol
             displaySymbol(cardItem);
-
+            
             // Add opened card to a temporary array 
             addOpenArray(cardItem);
-
+            // console.log('openedCards: ', openedCards);
+            
             // Check the two opened cards for match
             if(openedCards[1].innerHTML === openedCards[0].innerHTML) {
             // If the cards do match
@@ -190,7 +192,7 @@ function hideCards(openedCards) {
         // Close cards, hide their symbol, add back event listener and remove animation for unmatched cards
         openedCards[1].classList.remove("open", "show", "noclick", "nomatch");
         openedCards[0].classList.remove("open", "show", "noclick", "nomatch");
-    }, 1000);
+    }, 800);
 }
 
 // Increment the move counter and display it on the page
