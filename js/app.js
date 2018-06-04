@@ -99,6 +99,10 @@ function clickCard(cardItem) {
         // Check if the opened cards array already has another card
         if(openedCards.length === 1) {
         // If opened cards array has another card
+            for(let i = 0; i < shuffledSymbols.length; i++) {
+                shuffledSymbols[i].removeEventListener("click", displaySymbol);
+            };
+            
             // Display the card's symbol
             displaySymbol(cardItem);
             
@@ -124,6 +128,10 @@ function clickCard(cardItem) {
                 // console.log("Cards match!");
 
             } else {
+                // for(let i = 0; i < shuffledSymbols.length; i++) {
+                //     shuffledSymbols[i].removeEventListener("click", displaySymbol);
+                // };
+                
             // If the cards don't match
                 // Add animation to unmatched cards
                 addUnmatchAnimation (openedCards);
@@ -192,6 +200,9 @@ function hideCards(openedCards) {
         // Close cards, hide their symbol, add back event listener and remove animation for unmatched cards
         openedCards[1].classList.remove("open", "show", "noclick", "nomatch");
         openedCards[0].classList.remove("open", "show", "noclick", "nomatch");
+        for(let i = 0; i < shuffledSymbols.length; i++) {
+            shuffledSymbols[i].addEventListener("click", displaySymbol);
+        };
     }, 800);
 }
 
