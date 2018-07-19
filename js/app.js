@@ -29,7 +29,7 @@ let matchedCards = [];
 // Store the element which holds the moves in a variable
 let movePanel = document.querySelector(".moves");
 // Display de default moves on the page
-movePanel.innerHTML = 0;
+movePanel.innerHTML = '0';
 // Store the move counter in a variable
 let moveCounter = 0;
 
@@ -71,11 +71,12 @@ function shuffle(array) {
 }
 
 // Initialize game and display the cards on the page
+let cardItem;
 function drawCards() {
     // Loop through each card item
-    for (i = 0; i < shuffledSymbols.length; i++) {
+    for (let i = 0; i < shuffledSymbols.length; i++) {
         // Create card's HTML and add CSS class
-        let cardItem = document.createElement("li");
+        cardItem = document.createElement("li");
         cardItem.classList.add("card");
         cardItem.innerHTML = `<i class="${shuffledSymbols[i]}"></i>`;
         // Add each card's HTML to the page
@@ -87,32 +88,41 @@ function drawCards() {
 
 // Set up the click event listener for a card
 function clickCard(cardItem) {
-    cardItem.addEventListener("click", function() {
+    cardItem.addEventListener("click", function () {
         // console.log('openedCards: ', openedCards);
         // When the first card is clicked, start the timer
-        if(firstClick) {
+        if (firstClick) {
             beginTimer();
             // For the next clicks the condition will be false and the execution of the code will be skipped
             firstClick = false;
         }
 
         // Check if the opened cards array already has another card
-        if(openedCards.length === 1) {
-        // If opened cards array has another card
-            for(let i = 0; i < shuffledSymbols.length; i++) {
-                shuffledSymbols[i].removeEventListener("click", displaySymbol);
-            };
-            
+        if (openedCards.length === 1) {
+
+            // If opened cards array has another card
+            // function addEvent() {
+            //     for(let i = 0; i < shuffledSymbols.length; i++) {
+            //         cardItem.removeEventListener("click", displaySymbol);
+            //     };
+            // }
+
+            // cardItem.style.pointerevents = "none";
+
             // Display the card's symbol
             displaySymbol(cardItem);
-            
-            // Add opened card to a temporary array 
+
+            // Add opened card to a temporary array
             addOpenArray(cardItem);
-            // console.log('openedCards: ', openedCards);
-            
+            //console.log('openedCards: ', openedCards);
+
+            // for(let i = 0; i < cards.length; i++) {
+            //     cards[i].addEventListener("click", freez);
+            // };
+
             // Check the two opened cards for match
-            if(openedCards[1].innerHTML === openedCards[0].innerHTML) {
-            // If the cards do match
+            if (openedCards[1].innerHTML === openedCards[0].innerHTML) {
+                // If the cards do match
                 // Lock the cards in the open position
                 lockCards(openedCards);
 
@@ -124,21 +134,21 @@ function clickCard(cardItem) {
 
                 // Check if all cards have matched; if it's true, display a message with the final score
                 gameOver();
-                                
+
                 // console.log("Cards match!");
 
             } else {
                 // for(let i = 0; i < shuffledSymbols.length; i++) {
-                //     shuffledSymbols[i].removeEventListener("click", displaySymbol);
+                //     cardItem.removeEventListener("click", displaySymbol);
                 // };
-                
-            // If the cards don't match
+
+                // If the cards don't match
                 // Add animation to unmatched cards
-                addUnmatchAnimation (openedCards);
+                addUnmatchAnimation(openedCards);
 
                 // Close opened cards and hide their symbol
                 hideCards(openedCards);
-                
+
                 // Remove cards from opened cards array
                 openedCards = [];
 
@@ -149,15 +159,24 @@ function clickCard(cardItem) {
             countMoves();
 
         } else {
-        // If opened cards array is empty  
+            // If opened cards array is empty
             // Display card's symbol
             displaySymbol(cardItem);
 
-            // Add opened card to a temporary array 
+            // Add opened card to a temporary array
             addOpenArray(cardItem);
         }
     });
 }
+// let cards = document.getElementsByClassName("card");
+// function freez(cards) {
+
+//     for(let i = 0; i < cards.length; i++) {
+//         if(!cards[i].classList.contains("match")) {
+//             cards[i].classList.add("noclick");
+//         }
+//     }
+// }
 
 // Open card and display it's symbol and remove event listener
 function displaySymbol(cardItem) {
@@ -171,8 +190,8 @@ function addOpenArray(cardItem) {
 
 // Lock the cards in open position
 function lockCards(openedCards) {
-    // Delay the play of matched cards animation, to give time the second card to flip over 
-    setTimeout(function() {
+    // Delay the play of matched cards animation, to give time the second card to flip over
+    setTimeout(function () {
         openedCards[1].classList.add("match");
         openedCards[0].classList.add("match");
     }, 400);
@@ -184,9 +203,9 @@ function addMatchArray(openedCards) {
 }
 
 // Add animation to unmatched cards
-function addUnmatchAnimation (openedCards) {
-    // Delay the execution of this code, to give time the second card to flip over 
-    setTimeout(function() {
+function addUnmatchAnimation(openedCards) {
+    // Delay the execution of this code, to give time the second card to flip over
+    setTimeout(function () {
         // Play unmatched cards animation
         openedCards[1].classList.add("nomatch");
         openedCards[0].classList.add("nomatch");
@@ -194,33 +213,44 @@ function addUnmatchAnimation (openedCards) {
 }
 
 // Close opened cards and hide their symbol
-function hideCards(openedCards) {
+function hideCards(openedCards, cards) {
     // Delay the execution of this code, to give time to play unmatched cards animation
-    setTimeout(function() {
+    setTimeout(function () {
         // Close cards, hide their symbol, add back event listener and remove animation for unmatched cards
         openedCards[1].classList.remove("open", "show", "noclick", "nomatch");
         openedCards[0].classList.remove("open", "show", "noclick", "nomatch");
-        for(let i = 0; i < shuffledSymbols.length; i++) {
-            shuffledSymbols[i].addEventListener("click", displaySymbol);
-        };
+
+        // function removeEvent(cards) {
+        //     for(let i = 0; i < cards.length; i++) {
+        //         cards[i].removeEventListener("click", freez);
+        //     };
+        // }
+
+        function removeEvent() {
+            for(let i = 0; i < shuffledSymbols.length; i++) {
+                cardItem.addEventListener("click", displaySymbol);
+            };
+        }
+
+        // cardItem.style.pointerevents = 'auto';
     }, 800);
 }
 
 // Increment the move counter and display it on the page
 function countMoves() {
     moveCounter += 1;
-    movePanel.innerHTML = moveCounter;
+    movePanel.innerHTML = `${moveCounter}`;
     // Display star rating based on player's moves
     showRating();
 }
 
 // Display star rating based on player's moves
 function showRating() {
-    switch(moveCounter) {
+    switch (moveCounter) {
         // If number of moves >= 16, it changes to a 2 star rating
         case 16:
             starsPanel.innerHTML = starItem + starItem;
-        break;
+            break;
         // If number of moves >= 24, it changes to a 1 star rating
         case 24:
             starsPanel.innerHTML = starItem;
@@ -230,14 +260,14 @@ function showRating() {
 // Check if all cards have matched; if it's true, display a message with the final score
 function gameOver() {
     // Check the length of the matched cards array
-    if(matchedCards.length === 16) {
-    //If all 8 card pairs have matched, end the game
+    if (matchedCards.length === 16) {
+        //If all 8 card pairs have matched, end the game
         // Stop counting time
         endTimer();
         // Show game over message
-        setTimeout(function() {
+        setTimeout(function () {
             showPopup();
-        }, 100); 
+        }, 100);
     }
 }
 
@@ -251,11 +281,13 @@ function countTime() {
     // Increase the time counter by 1
     timeCounter += 1;
     // Divide the timer into mm:ss format
-    let min = Math.trunc(timeCounter/60);
-    let sec = (timeCounter-(min*60));
+    let minutes = Math.trunc(timeCounter / 60);
+    let seconds = (timeCounter - (minutes * 60));
+    let min;
+    let sec;
     // If the minutes and seconds have 1 digit, add a 0 in front of it
-    min < 10 ? min = `0${min}m` : min = `${min}m`;
-    sec < 10 ? sec = `0${sec}s` : sec = `${sec}s`;
+    minutes < 10 ? min = `0${minutes}m` : min = `${minutes}m`;
+    seconds < 10 ? sec = `0${seconds}s` : sec = `${seconds}s`;
     // Update the timer HTML on the page
     timePanel.innerHTML = `${min}:${sec}`;
 }
@@ -267,15 +299,15 @@ function endTimer() {
 
 // Show congratulations popup
 function showPopup() {
-    switch(starsPanel.innerHTML) {
+    switch (starsPanel.innerHTML) {
         // If number of stars = 3, the player has Death Star power
         case starItem + starItem + starItem:
             powerType = "Death Star";
-        break;
+            break;
         // If number of stars = 2, the player has Darth Vader power
         case starItem + starItem:
             powerType = "Darth Vader";
-        break;
+            break;
         // If number of stars = 1, the player has Stormtrooper power
         case starItem:
             powerType = "Storm Trooper";
@@ -300,7 +332,7 @@ function playAgain() {
 // Store the element which holds the reset button in a variable
 let resetButton = document.querySelector(".restart");
 // Add click event listener to reset button
-resetButton.addEventListener("click", function() {
+resetButton.addEventListener("click", function () {
     // Reset all variables
     resetVar();
     // Initialize the game
@@ -318,7 +350,7 @@ function resetVar() {
     // Delete cards from matched cards array
     matchedCards = [];
     // Reset moves
-    movePanel.innerHTML = 0;
+    movePanel.innerHTML = '0';
     moveCounter = 0;
     // Reset rating
     starsPanel.innerHTML = starItem + starItem + starItem;

@@ -78,11 +78,11 @@ h1 {
     /* position: relative; */
 }
 
-.deck .card > i {
+.deck .card>i {
     opacity: 0;
 }
 
-.deck .card.show > i {
+.deck .card.show>i {
     opacity: 1;
 }
 
@@ -98,12 +98,12 @@ h1 {
 } */
 
 /* Keyframe animation for matched cards */
+
 @keyframes match {
     from {
         transform: scale(1, 1);
         background: #c0c0c0;
     }
-
     to {
         transform: scale(1.2, 0.8);
         background: #fff44f;
@@ -119,22 +119,22 @@ h1 {
 }
 
 /* Keyframe animation for unmatched cards */
+
 @keyframes unmatch {
     from {
         transform: translate(0, 0);
         background: #c0c0c0;
     }
-
-    20%, 60% {
+    20%,
+    60% {
         transform: translate(-8px, 0);
         background: #f00;
     }
-
-    40%, 80% {
+    40%,
+    80% {
         transform: translate(8px, 0);
         background: #f00;
     }
-
     to {
         background: #f00;
     }
@@ -162,6 +162,7 @@ h1 {
 }
 
 /* TODO: improve unmatched cards animation */
+
 /* .deck .card.nomatch > i {
     animation-duration: 600ms;
     animation-name: unmatch;
@@ -262,7 +263,7 @@ h1 {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(0,0,0,0.5);
+    background: rgba(0, 0, 0, 0.5);
     visibility: hidden;
 }
 
@@ -271,11 +272,11 @@ h1 {
 }
 
 .modal {
-    background: rgba(255,255,255,0.9);
+    background: rgba(255, 255, 255, 0.9);
     padding: 30px;
     border-radius: 10px;
     text-align: center;
-    list-style-type: none; 
+    list-style-type: none;
 }
 
 .modal li {
@@ -294,10 +295,9 @@ h1 {
         -webkit-margin-before: 0.30em;
         -webkit-margin-after: 0.30em;
     }
-
     .deck {
         margin: 0 0 1em;
-    }    
+    }
 }
 
 @media screen and (max-width: 1200px) {
@@ -317,14 +317,14 @@ h1 {
     .deck .card {
         height: 110px;
         width: 110px;
-    }  
+    }
 }
 
 @media screen and (min-width: 466px) and (max-width: 540px) {
     .deck .card {
         height: 95px;
         width: 95px;
-    }  
+    }
 }
 
 @media screen and (min-width: 401px) and (max-width: 465px) {
@@ -346,15 +346,14 @@ h1 {
         height: 60px;
         width: 60px;
     }
-
     .sym {
-        height: 35px;  
+        height: 35px;
     }
 }
 
 @media screen and (max-width: 380px) {
     .score-panel {
         max-width: 345px;
-        padding:  0 15px 0 15px;
+        padding: 0 15px 0 15px;
     }
 }
