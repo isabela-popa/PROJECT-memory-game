@@ -55,6 +55,12 @@ let popUp = document.querySelector(".popup");
 // Declare a variable for Stars Wars power type based on rating
 let powerType;
 
+//  Allow click on cards.
+// This variable will be set to true while checking and animating 2 cards,
+// to prevent the user from clicking a third card.
+let unclickableCard = false;
+
+
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
@@ -81,6 +87,7 @@ function drawCards() {
         cardItem.innerHTML = `<i class="${shuffledSymbols[i]}"></i>`;
         // Add each card's HTML to the page
         cardBoard.appendChild(cardItem);
+        // console.log('cardItem: ', cardItem);
         // Add click event for each card
         clickCard(cardItem);
     }
@@ -97,28 +104,21 @@ function clickCard(cardItem) {
             firstClick = false;
         }
 
+        // Make cards unclickable while checking and animating 2 cards.
+        if (unclickableCard) {
+            return;
+        }
+
         // Check if the opened cards array already has another card
         if (openedCards.length === 1) {
 
             // If opened cards array has another card
-            // function addEvent() {
-            //     for(let i = 0; i < shuffledSymbols.length; i++) {
-            //         cardItem.removeEventListener("click", displaySymbol);
-            //     };
-            // }
-
-            // cardItem.style.pointerevents = "none";
-
             // Display the card's symbol
             displaySymbol(cardItem);
 
             // Add opened card to a temporary array
             addOpenArray(cardItem);
             //console.log('openedCards: ', openedCards);
-
-            // for(let i = 0; i < cards.length; i++) {
-            //     cards[i].addEventListener("click", freez);
-            // };
 
             // Check the two opened cards for match
             if (openedCards[1].innerHTML === openedCards[0].innerHTML) {
@@ -134,13 +134,11 @@ function clickCard(cardItem) {
 
                 // Check if all cards have matched; if it's true, display a message with the final score
                 gameOver();
-
                 // console.log("Cards match!");
 
             } else {
-                // for(let i = 0; i < shuffledSymbols.length; i++) {
-                //     cardItem.removeEventListener("click", displaySymbol);
-                // };
+                // Prevent the user from clicking a third card while checking and animating 2 cards
+                unclickableCard = true;
 
                 // If the cards don't match
                 // Add animation to unmatched cards
@@ -151,7 +149,6 @@ function clickCard(cardItem) {
 
                 // Remove cards from opened cards array
                 openedCards = [];
-
                 // console.log("Cards don't match!");
             }
 
@@ -168,15 +165,6 @@ function clickCard(cardItem) {
         }
     });
 }
-// let cards = document.getElementsByClassName("card");
-// function freez(cards) {
-
-//     for(let i = 0; i < cards.length; i++) {
-//         if(!cards[i].classList.contains("match")) {
-//             cards[i].classList.add("noclick");
-//         }
-//     }
-// }
 
 // Open card and display it's symbol and remove event listener
 function displaySymbol(cardItem) {
@@ -220,19 +208,8 @@ function hideCards(openedCards, cards) {
         openedCards[1].classList.remove("open", "show", "noclick", "nomatch");
         openedCards[0].classList.remove("open", "show", "noclick", "nomatch");
 
-        // function removeEvent(cards) {
-        //     for(let i = 0; i < cards.length; i++) {
-        //         cards[i].removeEventListener("click", freez);
-        //     };
-        // }
-
-        function removeEvent() {
-            for(let i = 0; i < shuffledSymbols.length; i++) {
-                cardItem.addEventListener("click", displaySymbol);
-            };
-        }
-
-        // cardItem.style.pointerevents = 'auto';
+        // Make cards clickable again
+        unclickableCard = false;
     }, 800);
 }
 
@@ -359,6 +336,7 @@ function resetVar() {
     timePanel.innerHTML = `00m:00s`;
     timeCounter = 0;
     firstClick = true;
+    unclickableCard = false;
 }
 
 // Start game
